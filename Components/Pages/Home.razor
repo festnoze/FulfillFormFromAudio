@@ -31,7 +31,7 @@
     <div class="bg-gray-200 px-6 py-5 rounded-lg grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4 col-span-12">
         <div>
             <label class="text-sm block font-medium text-gray-700">Marque</label>
-            <InputText @bind-Value="@car.Make" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            <InputText @bind-Value="@car.Brand" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
         </div>
         <div>
             <label class="text-sm block font-medium text-gray-700">Modèle</label>
@@ -143,7 +143,7 @@
         {
             try
             {
-                realtimeConversationManager = new("Car to be listed for sale",
+                realtimeConversationManager = new("Véhicules mis en vente",
                     RealtimeClient, micPipe.Reader.AsStream(), speaker!, UpdateModel, AddMessage);
                 await realtimeConversationManager.RunAsync(disposalCts.Token);
             }

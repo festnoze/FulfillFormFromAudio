@@ -29,7 +29,7 @@ public class RealtimeConversationManager<TModel>(string modelDescription, Realti
                 Chaque fois qu'il fournit une information pouvant être ajoutée à l'objet JSON, ajoutez-la à l'objet existant,
                 puis appelez l'outil pour enregistrer l'objet mis à jour. Ne cessez jamais de mettre à jour l'objet JSON.
                 Même si vous pensez que l'information est incorrecte, acceptez-la — ne tentez pas de corriger les erreurs.
-                Après chaque appel à l'outil de mise à jour du JSON, répondez simplement 'Fait'.
+                Après chaque appel à l'outil de mise à jour du JSON, répondez simplement 'Modification enregistrée'.
             """,
             Voice = ConversationVoice.Alloy,
             ContentModalities = ConversationContentModalities.Text,

@@ -6,7 +6,7 @@ namespace RealtimeFormApp;
 public class CarDescriptor
 {
     [Required]
-    public string? Make { get; set; }
+    public string? Brand { get; set; }
 
     [Required]
     public string? Model { get; set; }
