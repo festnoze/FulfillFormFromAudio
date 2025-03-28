@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.AI;
 using OpenAI.RealtimeConversation;
-using RealtimeFormApp.Support;
+using FulfillFormFromWithAudio.Support;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Schema;
 
-namespace RealtimeFormApp;
+namespace FulfillFormFromWithAudio;
 
 public class RealtimeConversationManager<TModel>(string modelDescription, RealtimeConversationClient realtimeConversationClient, Stream micStream, Speaker speaker, Action<TModel> updateCallback, Action<string> addMessage) : IDisposable
 {
@@ -21,17 +21,7 @@ public class RealtimeConversationManager<TModel>(string modelDescription, Realti
             JsonSerializerOptions.Default.GetJsonSchemaAsNode(typeof(TModel), new() { TreatNullObliviousAsNonNullable = true }));
         var sessionOptions = new ConversationSessionOptions()
         {
-            Instructions = $"""
-                Vous aidez à modifier un objet JSON qui représente un(e) {modelDescription}.
-                Cet objet JSON est conforme au schéma suivant : {jsonSchema}
-
-                Écoutez l'utilisateur et collectez les informations qu'il fournit. Ne répondez que s'il vous le demande explicitement ; contentez-vous d'écouter.
-                Chaque fois qu'il fournit une information pouvant être ajoutée à l'objet JSON, ajoutez-la à l'objet existant,
-                puis appelez l'outil pour enregistrer l'objet mis à jour. Ne cessez jamais de mettre à jour l'objet JSON.
-                Même si vous pensez que l'information est incorrecte, acceptez-la — ne tentez pas de corriger les erreurs.
-                Après chaque appel à l'outil de mise à jour du JSON, répondez simplement 'Information ajoutée'. 
-                Ne parle jamais à l'utilisateur d'objet JSON, de schéma, de modèle de données, ou autre concept technique, parle plutôt : "d'informations concernant le véhicule qu'il souhaite vendre".
-            """,
+            Instructions = await File.ReadAllTextAsync("prompt.txt"),
             Voice = ConversationVoice.Alloy,
             ContentModalities = ConversationContentModalities.Text,
             TurnDetectionOptions = ConversationTurnDetectionOptions.CreateServerVoiceActivityTurnDetectionOptions(detectionThreshold: 0.4f, silenceDuration: TimeSpan.FromMilliseconds(150)),

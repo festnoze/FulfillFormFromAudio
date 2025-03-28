@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace RealtimeFormApp.Support;
+namespace FulfillFormFromWithAudio.Support;
 
 [BindElement("div", "content", "value", "onchange")]
 public static class BindAttributes
