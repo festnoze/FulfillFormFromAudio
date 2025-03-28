@@ -1,0 +1,30 @@
+﻿@using System.Linq.Expressions
+@using Microsoft.AspNetCore.Components.Forms
+<InputSelect class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression">
+    <option value=""></option>
+    <option value="@(Funding.CORE_PKL_Contrat_individuel)">Contrat_individuel</option>
+    <option value="@(Funding.CORE_PKL_CPF)">CPF</option>
+    <option value="@(Funding.CORE_PKL_CPF_abonde)">CPF_abonde</option>
+    <option value="@(Funding.STUDI_PKL_CPF_Public)">STUDI_PKL_CPF_Public</option>
+    <option value="@(Funding.CORE_PKL_CPF_de_transition)">CPF_de_transition</option>
+    <option value="@(Funding.CORE_PKL_AIF)">AIF</option>
+    <option value="@(Funding.CORE_PKL_SAS_Apprentissage)">SAS_Apprentissage</option>
+    <option value="@(Funding.CORE_PKL_AO_Pole_emploi)">AO_Pole_emploi</option>
+    <option value="@(Funding.CORE_PKL_SAFIR_IDF)">SAFIR_IDF</option>
+    <option value="@(Funding.CORE_PKL_FNE_Chomage)">FNE_Chomage</option>
+    <option value="@(Funding.CORE_PKL_Contrat_de_professionnalisation)">Contrat_de_professionnalisation</option>
+    <option value="@(Funding.CORE_PKL_ProA)">ProA</option>
+    <option value="@(Funding.CORE_PKL_Apprentissage)">Apprentissage</option>
+    <option value="@(Funding.CORE_PKL_Plan_de_Developpement_des_Competences)">Plan_de_Developpement_des_Competences</option>
+    <option value="@(Funding.CORE_PKL_Contrat_de_reclassement)">Contrat_de_reclassement</option>
+    <option value="@(Funding.STUDI_PKL_AIRE2)">AIRE2</option>
+    <option value="@(Funding.STUDI_PKL_PRF_IDF)">PRF_IDF</option>
+</InputSelect>
+@code {
+    [Parameter]
+    public Funding? Value { get; set; }
+    [Parameter]
+    public EventCallback<Funding?> ValueChanged { get; set; }
+    [Parameter]
+    public Expression<Func<Funding?>>? ValueExpression { get; set; }
+}

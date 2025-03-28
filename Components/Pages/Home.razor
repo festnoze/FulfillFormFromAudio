@@ -11,85 +11,207 @@
 @inject IJSRuntime JS
 @inject RealtimeConversationClient RealtimeClient
 
-<PageTitle>Add vehicle</PageTitle>
+<PageTitle>Ajouter nouveau formulaire LID</PageTitle>
 
 <SectionContent SectionName="header-bar">
-    <span>Ajouter un nouveau véhicule à la vente</span>
-
+    <span>Ajouter un nouveau formulaire LID</span>
     <MicControl Status="micStatus" OnClick="ChangeMicStatusAsync" class="ml-auto mr-4" />
-    <Speaker @ref="@speaker" />
-
-    <button @onclick="@(() => editContext?.Validate())" type="button" class="flex items-center gap-2 text-lg py-2 px-5 bg-gray-900/50 rounded-lg text-white font-semibold hover:bg-blue-600 active:bg-blue-900 active:translate-y-px transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" /></svg>
+    <Speaker @ref="speaker" />
+    <button @onclick="() => editContext?.Validate()" type="button" class="flex items-center gap-2 text-lg py-2 px-5 bg-gray-900/50 rounded-lg text-white font-semibold hover:bg-blue-600 active:bg-blue-900 active:translate-y-px transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+        </svg>
         Enregistrer
     </button>
 </SectionContent>
 
-<EditForm EditContext="@editContext" class="grid grid-cols-12 gap-x-10 gap-y-8">
+<EditForm EditContext="editContext" class="grid grid-cols-12 gap-x-10 gap-y-8">
     <ObjectGraphDataAnnotationsValidator />
 
-    <div class="bg-gray-200 px-6 py-5 rounded-lg grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4 col-span-12">
-        <div>
-            <label class="text-sm block font-medium text-gray-700">Marque</label>
-            <InputText @bind-Value="@car.Brand" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
-        </div>
-        <div>
-            <label class="text-sm block font-medium text-gray-700">Modèle</label>
-            <InputText @bind-Value="@car.Model" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
-        </div>
-        <div>
-            <label class="text-sm block font-medium text-gray-700">Année de mise en circulation</label>
-            <InputNumber @bind-Value="@car.Year" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
-        </div>
-        <div>
-            <label class="text-sm block font-medium text-gray-700">Kilométrage</label>
-            <InputNumber @bind-Value="@car.Mileage" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+    <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
+        <h2 class="text-lg font-semibold mb-4">Identité du lead</h2>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Nom</label>
+                <InputText @bind-Value="form.Identity.Nom" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Prénom</label>
+                <InputText @bind-Value="form.Identity.Prenom" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Gender</label>
+                <InputText @bind-Value="form.Identity.Gender" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Date de naissance</label>
+                <InputDate @bind-Value="form.Identity.Birthdate" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Année de naissance</label>
+                <InputNumber @bind-Value="form.Identity.Birthyear" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Situation professionnelle</label>
+                <InputText @bind-Value="form.Identity.ProfessionalSituation" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Niveau de diplôme</label>
+                <InputText @bind-Value="form.Identity.DiplomaLevel" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Nom du diplôme</label>
+                <InputText @bind-Value="form.Identity.DiplomaName" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
         </div>
     </div>
 
-    <div class="bg-gray-200 px-6 py-6 rounded-lg col-span-12 lg:col-span-7">
-        <label class="text-base block font-medium text-gray-700">Etat / Options</label>
-
-        @for (var i = 0; i < (car.ConditionNotes ?? []).Count; i++)
-        {
-            var j = i;
-            <div class="flex gap-4 mt-4 mb-2 items-start">
-                <ContentEditable @bind-Value="@car.ConditionNotes![j]" class="w-full leading-tight px-5 py-4 bg-white rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
-                <button @onclick="@(() => car.ConditionNotes.RemoveAt(j))" type="button" class="w-4 ml-1 text-gray-700 mt-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                </button>
+    <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
+        <h2 class="text-lg font-semibold mb-4">Adresse postale</h2>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Adresse (rue, numéro)</label>
+                <InputText @bind-Value="form.Address.Street" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
             </div>
-        }
-
-        <button @onclick="@(() => car.ConditionNotes!.Add(""))" type="button" class="flex gap-1 items-center mt-5 py-2 px-4 text-sm bg-blue-900 rounded-md text-white font-semibold hover:bg-blue-600 active:bg-blue-900 active:translate-y-px transition-all">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            Ajouter une information
-        </button>
-
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Code postal</label>
+                <InputText @bind-Value="form.Address.PostalCode" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Ville</label>
+                <InputText @bind-Value="form.Address.City" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Pays</label>
+                <InputText @bind-Value="form.Address.Pays" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+        </div>
     </div>
 
-    <div class="bg-gray-200 px-6 py-4 rounded-lg col-span-12 lg:col-span-5">
-        <label class="text-base block font-medium text-gray-700">Etat des pneus</label>
-        <div class="grid grid-cols-2 my-4 gap-6">
+    <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
+        <h2 class="text-lg font-semibold mb-4">Informations de contact</h2>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div>
-                <label class="text-sm block font-medium text-gray-700">Avant gauche</label>
-                <TyreStatusPicker @bind-Value="@car.Tyres.FrontLeft" />
+                <label class="text-sm block font-medium text-gray-700">Email</label>
+                <InputText @bind-Value="form.ContactInfo.Email" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
             </div>
             <div>
-                <label class="text-sm block font-medium text-gray-700">Avant droit</label>
-                <TyreStatusPicker @bind-Value="@car.Tyres.FrontRight" />
+                <label class="text-sm block font-medium text-gray-700">Téléphone</label>
+                <InputText @bind-Value="form.ContactInfo.Telephone" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
+        <h2 class="text-lg font-semibold mb-4">Informations techniques</h2>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+            <div>
+                <label class="text-sm block font-medium text-gray-700">URL</label>
+                <InputText @bind-Value="form.TechnicalInfo.Url" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
             </div>
             <div>
-                <label class="text-sm block font-medium text-gray-700">Arrière gauche</label>
-                <TyreStatusPicker @bind-Value="@car.Tyres.BackLeft" />
+                <label class="text-sm block font-medium text-gray-700">Adresse IP</label>
+                <InputText @bind-Value="form.TechnicalInfo.IpAddress" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
             </div>
             <div>
-                <label class="text-sm block font-medium text-gray-700">Arrière droit</label>
-                <TyreStatusPicker @bind-Value="@car.Tyres.BackRight" />
+                <label class="text-sm block font-medium text-gray-700">Appareil</label>
+                <InputText @bind-Value="form.TechnicalInfo.Device" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Première visite</label>
+                <InputDate @bind-Value="form.TechnicalInfo.FirstVisit" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div class="col-span-2">
+                <label class="text-sm block font-medium text-gray-700">Première page visitée</label>
+                <InputText @bind-Value="form.TechnicalInfo.FirstPage" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
+        <h2 class="text-lg font-semibold mb-4">Informations UTM</h2>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+            <div>
+                <label class="text-sm block font-medium text-gray-700">UTM Source</label>
+                <InputText @bind-Value="form.Utm.UtmSource" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">UTM Medium</label>
+                <InputText @bind-Value="form.Utm.UtmMedium" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">UTM Campaign</label>
+                <InputText @bind-Value="form.Utm.UtmCampaign" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">UTM Content</label>
+                <InputText @bind-Value="form.Utm.UtmContent" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">UTM Term</label>
+                <InputText @bind-Value="form.Utm.UtmTerm" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
+        <h2 class="text-lg font-semibold mb-4">Informations complémentaires</h2>
+        <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Thématique</label>
+                <InputText @bind-Value="form.Additional.Thematique" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Formulaire</label>
+                <InputText @bind-Value="form.Additional.Formulaire" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Consentement</label>
+                <InputText @bind-Value="form.Additional.Consentement" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Document URL</label>
+                <InputText @bind-Value="form.Additional.DocumentUrl" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Funding</label>
+                <InputText @bind-Value="form.Additional.Funding" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Capture Channel</label>
+                <InputText @bind-Value="form.Additional.CaptureChannel" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Form Type</label>
+                <InputText @bind-Value="form.Additional.FormType" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Form Area</label>
+                <InputText @bind-Value="form.Additional.FormArea" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div class="col-span-2">
+                <label class="text-sm block font-medium text-gray-700">Informations complémentaires sur le formulaire</label>
+                <InputText @bind-Value="form.Additional.FormMoreInformation" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div class="col-span-2">
+                <label class="text-sm block font-medium text-gray-700">Commentaires</label>
+                <InputText @bind-Value="form.Additional.Comments" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Training Course ID</label>
+                <InputText @bind-Value="form.Additional.TrainingCourseId" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Alternance</label>
+                <InputText @bind-Value="form.Additional.Alternance" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">Tech Source</label>
+                <InputText @bind-Value="form.Additional.TechSource" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+            </div>
+            <div>
+                <label class="text-sm block font-medium text-gray-700">CV</label>
+                <InputText @bind-Value="form.Additional.Cv" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
             </div>
         </div>
     </div>
@@ -116,14 +238,14 @@
 }
 
 @code {
-    readonly CarDescriptor car = new();
+    readonly LIDForm form = new();
     EditContext? editContext;
     Task<IJSObjectReference>? moduleTask;
     IJSObjectReference? mic;
     DotNetObjectReference<Home>? selfReference;
     Pipe micPipe = new();
     Speaker? speaker;
-    RealtimeConversationManager<CarDescriptor>? realtimeConversationManager;
+    RealtimeConversationManager<LIDForm>? realtimeConversationManager;
     CancellationTokenSource disposalCts = new();
     List<string> messages = new();
     SemaphoreSlim writeAudioSemaphore = new(1);
@@ -131,7 +253,7 @@
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(car);
+        editContext = new EditContext(form);
         selfReference = DotNetObjectReference.Create(this);
         moduleTask = JS.InvokeAsync<IJSObjectReference>("import", "./Components/Pages/Home.razor.js").AsTask();
     }
@@ -143,8 +265,8 @@
         {
             try
             {
-                realtimeConversationManager = new("Véhicules mis en vente",
-                    RealtimeClient, micPipe.Reader.AsStream(), speaker!, UpdateModel, AddMessage);
+                realtimeConversationManager = new RealtimeConversationManager<LIDForm>(
+                    "Nouveau formulaire LID", RealtimeClient, micPipe.Reader.AsStream(), speaker!, UpdateModel, AddMessage);
                 await realtimeConversationManager.RunAsync(disposalCts.Token);
             }
             catch (Exception ex)
@@ -154,13 +276,11 @@
         }
     }
 
-    private void UpdateModel(CarDescriptor newCar)
+    private void UpdateModel(LIDForm newForm)
     {
-        // This method is called by the conversation manager from outside the Blazor event mechanism,
-        // so we need to InvokeAsync onto the sync context, and manually call StateHasChanged
         InvokeAsync(() =>
         {
-            if (UpdateModelProperties(car, newCar))
+            if (UpdateModelProperties(form, newForm))
             {
                 StateHasChanged();
             }
@@ -205,15 +325,12 @@
             var module = await moduleTask!;
             await module.DisposeAsync();
         }
-        catch (JSDisconnectedException)
-        {
-            // Not an error
-        }
+        catch (JSDisconnectedException) { }
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        realtimeConversationManager?.SetModelData(car);
+        realtimeConversationManager?.SetModelData(form);
     }
 
     private bool UpdateModelProperties(object oldModel, object newModel)
@@ -227,14 +344,13 @@
             {
                 foundChange |= UpdateModelProperties(oldValue!, newValue!);
             }
-            else if (oldValue != newValue)
+            else if (oldValue != newValue && newValue != null)
             {
                 prop.SetValue(oldModel, newValue);
                 editContext!.NotifyFieldChanged(new FieldIdentifier(oldModel, prop.Name));
                 foundChange = true;
             }
         }
-
         return foundChange;
     }
 
@@ -257,4 +373,6 @@
                 break;
         }
     }
+
+    private Task DispatchExceptionAsync(Exception ex) => Task.CompletedTask;
 }

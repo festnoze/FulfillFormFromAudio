@@ -1,0 +1,32 @@
+﻿@using System.Linq.Expressions
+@using Microsoft.AspNetCore.Components.Forms
+<InputSelect class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression">
+    <option value=""></option>
+    <option value="@(FormType.CORE_PKL_Online_Shop)">Online Shop</option>
+    <option value="@(FormType.CORE_PKL_Application_file)">Application file</option>
+    <option value="@(FormType.CORE_PKL_Application_online)">Application online</option>
+    <option value="@(FormType.CORE_PKL_Examination)">Examination</option>
+    <option value="@(FormType.CORE_PKL_Contact)">Contact</option>
+    <option value="@(FormType.CORE_PKL_Booking_appointment)">Booking appointment</option>
+    <option value="@(FormType.CORE_PKL_Preparation_Day_Mock_Competition)">Preparation Day Mock Competition</option>
+    <option value="@(FormType.CORE_PKL_Funding)">Funding</option>
+    <option value="@(FormType.CORE_PKL_Registration)">Registration</option>
+    <option value="@(FormType.CORE_PKL_Open_day)">Open day</option>
+    <option value="@(FormType.CORE_PKL_Call_back)">Call back</option>
+    <option value="@(FormType.CORE_PKL_Fairs)">Fairs</option>
+    <option value="@(FormType.CORE_PKL_Admission_session)">Admission session</option>
+    <option value="@(FormType.CORE_PKL_Surqualification)">Surqualification</option>
+    <option value="@(FormType.CORE_PKL_Virtual_open_day)">Virtual open day</option>
+    <option value="@(FormType.CORE_PKL_Webinar)">Webinar</option>
+    <option value="@(FormType.CORE_PKL_Scholarship)">Scholarship</option>
+    <option value="@(FormType.CORE_PKL_Trial_Period)">Trial Period</option>
+    <option value="@(FormType.CORE_PKL_Sponsorship)">CORE_PKL_Sponsorship</option>
+</InputSelect>
+@code {
+    [Parameter]
+    public FormType? Value { get; set; }
+    [Parameter]
+    public EventCallback<FormType?> ValueChanged { get; set; }
+    [Parameter]
+    public Expression<Func<FormType?>>? ValueExpression { get; set; }
+}
