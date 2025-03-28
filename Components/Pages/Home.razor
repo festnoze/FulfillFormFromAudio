@@ -227,7 +227,7 @@
             {
                 foundChange |= UpdateModelProperties(oldValue!, newValue!);
             }
-            else if (oldValue != newValue && newValue != null)
+            else if (oldValue != newValue)
             {
                 prop.SetValue(oldModel, newValue);
                 editContext!.NotifyFieldChanged(new FieldIdentifier(oldModel, prop.Name));
