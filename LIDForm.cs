@@ -1,119 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-
-namespace FulfillFormFromWithAudio;
-
-public class LIDForm
-{
-    [Required]
-    public Identity Identity { get; set; } = new();
-    [Required]
-    public Address Address { get; set; } = new();
-    [Required]
-    public ContactInfo ContactInfo { get; set; } = new();
-    [Required]
-    public TechnicalInfo TechnicalInfo { get; set; } = new();
-    [Required]
-    public Utm Utm { get; set; } = new();
-    [Required]
-    public Additional Additional { get; set; } = new();
-}
-
-
-public class Identity
-{
-    [Required, MinLength(1), MaxLength(100)]
-    public string Nom { get; set; } = string.Empty;
-    [Required, MinLength(1), MaxLength(100)]
-    public string Prenom { get; set; } = string.Empty;
-    [MinLength(2), MaxLength(5)]
-    public Gender? Gender { get; set; }
-    public DateTime? Birthdate { get; set; }
-    [Range(1900, 2100)]
-    public int? Birthyear { get; set; }
-    [MinLength(1), MaxLength(100)]
-    public string? ProfessionalSituation { get; set; }
-    [MinLength(1), MaxLength(100)]
-    public string? DiplomaLevel { get; set; }
-    [MinLength(1), MaxLength(100)]
-    public string? DiplomaName { get; set; }
-}
-
-public class Address
-{
-    [Required, MinLength(1), MaxLength(200)]
-    public string Street { get; set; } = string.Empty;
-    [Required, MinLength(4), MaxLength(10)]
-    public string PostalCode { get; set; } = string.Empty;
-    [Required, MinLength(1), MaxLength(100)]
-    public string City { get; set; } = string.Empty;
-    [Required]
-    public Country Pays { get; set; } = Country.FR;
-}
-
-public class ContactInfo
-{
-    [Required, MinLength(5), MaxLength(100)]
-    public string Email { get; set; } = string.Empty;
-    [Required, MinLength(8), MaxLength(20)]
-    public string Telephone { get; set; } = string.Empty;
-}
-
-public class TechnicalInfo
-{
-    [Required, MinLength(5), MaxLength(200)]
-    public string Url { get; set; } = string.Empty;
-    [MinLength(7), MaxLength(15)]
-    public string? IpAddress { get; set; }
-    [MinLength(1), MaxLength(50)]
-    public DeviceType? Device { get; set; }
-    public DateTime? FirstVisit { get; set; }
-    [MinLength(1), MaxLength(200)]
-    public string? FirstPage { get; set; }
-}
-
-public class Utm
-{
-    [Required, MinLength(1), MaxLength(100)]
-    public string UtmSource { get; set; } = string.Empty;
-    [Required]
-    public UtmMedium UtmMedium { get; set; }
-    [MinLength(1), MaxLength(100)]
-    public string? UtmCampaign { get; set; }
-    [MinLength(1), MaxLength(100)]
-    public string? UtmContent { get; set; }
-    [MinLength(1), MaxLength(100)]
-    public string? UtmTerm { get; set; }
-}
-
-public class Additional
-{
-    [MaxLength(100)]
-    public string? Thematique { get; set; }
-    [Required, MinLength(1), MaxLength(100)]
-    public string Formulaire { get; set; } = string.Empty;
-    [MinLength(1), MaxLength(500)]
-    public string? Consentement { get; set; }
-    [MinLength(5), MaxLength(200)]
-    public string? DocumentUrl { get; set; }
-    public Funding? Funding { get; set; }
-    public CaptureChannel? CaptureChannel { get; set; }
-    public FormType? FormType { get; set; }
-    public FormArea? FormArea { get; set; }
-    [MaxLength(500)]
-    public string? FormMoreInformation { get; set; }
-    [MaxLength(500)]
-    public string? Comments { get; set; }
-    [MinLength(1), MaxLength(100)]
-    public string? TrainingCourseId { get; set; }
-    [Required]
-    public Alternance Alternance { get; set; } = Alternance.Non;
-    [MinLength(1), MaxLength(100)]
-    public string? TechSource { get; set; }
-    public string? Cv { get; set; }
-}
-
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Gender { M, Mme, Dr, Autre }
@@ -210,18 +98,111 @@ public enum FormType
 }
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum FormArea
-{
-    CORE_PKL_Bottom_of_page,
-    CORE_PKL_Thank_you_page,
-    CORE_PKL_Content,
-    CORE_PKL_Embeded,
-    CORE_PKL_Footer,
-    CORE_PKL_Header,
-    CORE_PKL_Interstitial,
-    CORE_PKL_Page,
-    CORE_PKL_Sidebar
-}
+public enum FormArea { CORE_PKL_Bottom_of_page, CORE_PKL_Thank_you_page, CORE_PKL_Content, CORE_PKL_Embeded, CORE_PKL_Footer, CORE_PKL_Header, CORE_PKL_Interstitial, CORE_PKL_Page, CORE_PKL_Sidebar }
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Alternance { Oui, Non }
+
+public class LIDForm
+{
+    [Required]
+    public Identity Identity { get; set; } = new();
+    [Required]
+    public Address Address { get; set; } = new();
+    [Required]
+    public ContactInfo ContactInfo { get; set; } = new();
+    [Required]
+    public TechnicalInfo TechnicalInfo { get; set; } = new();
+    [Required]
+    public Utm Utm { get; set; } = new();
+    [Required]
+    public Additional Additional { get; set; } = new();
+}
+
+public class Identity
+{
+    [Required, MinLength(1), MaxLength(100)]
+    public string Nom { get; set; } = string.Empty;
+    [Required, MinLength(1), MaxLength(100)]
+    public string Prenom { get; set; } = string.Empty;
+    public Gender? Gender { get; set; }
+    public DateTime? Birthdate { get; set; }
+    [Range(1900, 2100)]
+    public int? Birthyear { get; set; }
+    [MinLength(1), MaxLength(100)]
+    public string? ProfessionalSituation { get; set; }
+    [MinLength(1), MaxLength(100)]
+    public string? DiplomaLevel { get; set; }
+    [MinLength(1), MaxLength(100)]
+    public string? DiplomaName { get; set; }
+}
+
+public class Address
+{
+    [Required, MinLength(1), MaxLength(200)]
+    public string Street { get; set; } = string.Empty;
+    [Required, MinLength(4), MaxLength(10)]
+    public string PostalCode { get; set; } = string.Empty;
+    [Required, MinLength(1), MaxLength(100)]
+    public string City { get; set; } = string.Empty;
+    public Country Pays { get; set; } = Country.FR;
+}
+
+public class ContactInfo
+{
+    [Required, MinLength(5), MaxLength(100)]
+    public string Email { get; set; } = string.Empty;
+    [Required, MinLength(8), MaxLength(20)]
+    public string Telephone { get; set; } = string.Empty;
+}
+
+public class TechnicalInfo
+{
+    [Required, MinLength(5), MaxLength(200)]
+    public string Url { get; set; } = string.Empty;
+    [MinLength(7), MaxLength(15)]
+    public string? IpAddress { get; set; }
+    public DeviceType? Device { get; set; }
+    public DateTime? FirstVisit { get; set; }
+    [MinLength(1), MaxLength(200)]
+    public string? FirstPage { get; set; }
+}
+
+public class Utm
+{
+    [Required, MinLength(1), MaxLength(100)]
+    public string UtmSource { get; set; } = string.Empty;
+    public UtmMedium UtmMedium { get; set; }
+    [MinLength(1), MaxLength(100)]
+    public string? UtmCampaign { get; set; }
+    [MinLength(1), MaxLength(100)]
+    public string? UtmContent { get; set; }
+    [MinLength(1), MaxLength(100)]
+    public string? UtmTerm { get; set; }
+}
+
+public class Additional
+{
+    [MaxLength(100)]
+    public string? Thematique { get; set; }
+    [Required, MinLength(1), MaxLength(100)]
+    public string Formulaire { get; set; } = string.Empty;
+    [MinLength(1), MaxLength(500)]
+    public string? Consentement { get; set; }
+    [MinLength(5), MaxLength(200)]
+    public string? DocumentUrl { get; set; }
+    public Funding? Funding { get; set; }
+    public CaptureChannel? CaptureChannel { get; set; }
+    public FormType? FormType { get; set; }
+    public FormArea? FormArea { get; set; }
+    [MaxLength(500)]
+    public string? FormMoreInformation { get; set; }
+    [MaxLength(500)]
+    public string? Comments { get; set; }
+    [MinLength(1), MaxLength(100)]
+    public string? TrainingCourseId { get; set; }
+    public Alternance Alternance { get; set; } = Alternance.Non;
+    [MinLength(1), MaxLength(100)]
+    public string? TechSource { get; set; }
+    public string? Cv { get; set; }
+}

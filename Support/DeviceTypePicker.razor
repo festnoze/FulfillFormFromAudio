@@ -1,10 +1,13 @@
 ﻿@using System.Linq.Expressions
 @using Microsoft.AspNetCore.Components.Forms
-<InputSelect class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression">
+<InputSelect class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500"
+             Value="@Value"
+             ValueChanged="@ValueChanged"
+             ValueExpression="@ValueExpression">
     <option value=""></option>
-    <option value="@(DeviceType.CORE_PKL_Computer)">Ordinateur</option>
-    <option value="@(DeviceType.CORE_PKL_Phone)">Téléphone</option>
-    <option value="@(DeviceType.CORE_PKL_Tablet)">Tablette</option>
+    <option value="@(DeviceType.CORE_PKL_Computer)">CORE_PKL_Computer</option>
+    <option value="@(DeviceType.CORE_PKL_Phone)">CORE_PKL_Phone</option>
+    <option value="@(DeviceType.CORE_PKL_Tablet)">CORE_PKL_Tablet</option>
 </InputSelect>
 @code {
     [Parameter]

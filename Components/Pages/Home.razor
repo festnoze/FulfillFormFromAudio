@@ -28,190 +28,196 @@
 <EditForm EditContext="editContext" class="grid grid-cols-12 gap-x-10 gap-y-8">
     <ObjectGraphDataAnnotationsValidator />
 
+    <!-- Identité du lead -->
     <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
         <h2 class="text-lg font-semibold mb-4">Identité du lead</h2>
         <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div>
                 <label class="text-sm block font-medium text-gray-700">Nom</label>
-                <InputText @bind-Value="form.Identity.Nom" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Identity.Nom" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Prénom</label>
-                <InputText @bind-Value="form.Identity.Prenom" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Identity.Prenom" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Gender</label>
-                <InputText @bind-Value="form.Identity.Gender" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <GenderPicker @bind-Value="form.Identity.Gender" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Date de naissance</label>
-                <InputDate @bind-Value="form.Identity.Birthdate" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputDate @bind-Value="form.Identity.Birthdate" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Année de naissance</label>
-                <InputNumber @bind-Value="form.Identity.Birthyear" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputNumber @bind-Value="form.Identity.Birthyear" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Situation professionnelle</label>
-                <InputText @bind-Value="form.Identity.ProfessionalSituation" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Identity.ProfessionalSituation" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Niveau de diplôme</label>
-                <InputText @bind-Value="form.Identity.DiplomaLevel" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Identity.DiplomaLevel" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Nom du diplôme</label>
-                <InputText @bind-Value="form.Identity.DiplomaName" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Identity.DiplomaName" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
         </div>
     </div>
 
+    <!-- Adresse postale -->
     <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
         <h2 class="text-lg font-semibold mb-4">Adresse postale</h2>
         <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div>
                 <label class="text-sm block font-medium text-gray-700">Adresse (rue, numéro)</label>
-                <InputText @bind-Value="form.Address.Street" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Address.Street" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Code postal</label>
-                <InputText @bind-Value="form.Address.PostalCode" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Address.PostalCode" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Ville</label>
-                <InputText @bind-Value="form.Address.City" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Address.City" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Pays</label>
-                <InputText @bind-Value="form.Address.Pays" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <CountryPicker @bind-Value="form.Address.Pays" />
             </div>
         </div>
     </div>
 
+    <!-- Informations de contact -->
     <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
         <h2 class="text-lg font-semibold mb-4">Informations de contact</h2>
         <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div>
                 <label class="text-sm block font-medium text-gray-700">Email</label>
-                <InputText @bind-Value="form.ContactInfo.Email" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.ContactInfo.Email" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Téléphone</label>
-                <InputText @bind-Value="form.ContactInfo.Telephone" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.ContactInfo.Telephone" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
         </div>
     </div>
 
+    <!-- Informations techniques -->
     <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
         <h2 class="text-lg font-semibold mb-4">Informations techniques</h2>
         <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div>
                 <label class="text-sm block font-medium text-gray-700">URL</label>
-                <InputText @bind-Value="form.TechnicalInfo.Url" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.TechnicalInfo.Url" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Adresse IP</label>
-                <InputText @bind-Value="form.TechnicalInfo.IpAddress" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.TechnicalInfo.IpAddress" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Appareil</label>
-                <InputText @bind-Value="form.TechnicalInfo.Device" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <DeviceTypePicker @bind-Value="form.TechnicalInfo.Device" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Première visite</label>
-                <InputDate @bind-Value="form.TechnicalInfo.FirstVisit" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputDate @bind-Value="form.TechnicalInfo.FirstVisit" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div class="col-span-2">
                 <label class="text-sm block font-medium text-gray-700">Première page visitée</label>
-                <InputText @bind-Value="form.TechnicalInfo.FirstPage" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.TechnicalInfo.FirstPage" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
         </div>
     </div>
 
+    <!-- Informations UTM -->
     <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
         <h2 class="text-lg font-semibold mb-4">Informations UTM</h2>
         <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div>
                 <label class="text-sm block font-medium text-gray-700">UTM Source</label>
-                <InputText @bind-Value="form.Utm.UtmSource" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Utm.UtmSource" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">UTM Medium</label>
-                <InputText @bind-Value="form.Utm.UtmMedium" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <UtmMediumPicker @bind-Value="form.Utm.UtmMedium" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">UTM Campaign</label>
-                <InputText @bind-Value="form.Utm.UtmCampaign" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Utm.UtmCampaign" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">UTM Content</label>
-                <InputText @bind-Value="form.Utm.UtmContent" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Utm.UtmContent" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">UTM Term</label>
-                <InputText @bind-Value="form.Utm.UtmTerm" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Utm.UtmTerm" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
         </div>
     </div>
 
+    <!-- Informations complémentaires -->
     <div class="bg-gray-200 px-6 py-5 rounded-lg col-span-12">
         <h2 class="text-lg font-semibold mb-4">Informations complémentaires</h2>
         <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div>
                 <label class="text-sm block font-medium text-gray-700">Thématique</label>
-                <InputText @bind-Value="form.Additional.Thematique" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.Thematique" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Formulaire</label>
-                <InputText @bind-Value="form.Additional.Formulaire" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.Formulaire" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Consentement</label>
-                <InputText @bind-Value="form.Additional.Consentement" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.Consentement" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Document URL</label>
-                <InputText @bind-Value="form.Additional.DocumentUrl" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.DocumentUrl" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Funding</label>
-                <InputText @bind-Value="form.Additional.Funding" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <FundingPicker @bind-Value="form.Additional.Funding" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Capture Channel</label>
-                <InputText @bind-Value="form.Additional.CaptureChannel" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <CaptureChannelPicker @bind-Value="form.Additional.CaptureChannel" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Form Type</label>
-                <InputText @bind-Value="form.Additional.FormType" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <FormTypePicker @bind-Value="form.Additional.FormType" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Form Area</label>
-                <InputText @bind-Value="form.Additional.FormArea" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <FormAreaPicker @bind-Value="form.Additional.FormArea" />
             </div>
             <div class="col-span-2">
                 <label class="text-sm block font-medium text-gray-700">Informations complémentaires sur le formulaire</label>
-                <InputText @bind-Value="form.Additional.FormMoreInformation" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.FormMoreInformation" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div class="col-span-2">
                 <label class="text-sm block font-medium text-gray-700">Commentaires</label>
-                <InputText @bind-Value="form.Additional.Comments" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.Comments" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Training Course ID</label>
-                <InputText @bind-Value="form.Additional.TrainingCourseId" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.TrainingCourseId" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Alternance</label>
-                <InputText @bind-Value="form.Additional.Alternance" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <AlternancePicker @bind-Value="form.Additional.Alternance" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">Tech Source</label>
-                <InputText @bind-Value="form.Additional.TechSource" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.TechSource" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
             <div>
                 <label class="text-sm block font-medium text-gray-700">CV</label>
-                <InputText @bind-Value="form.Additional.Cv" class="w-full mt-2 px-3 py-1 rounded-md shadow-md outline-2 focus:outline focus:outline-blue-500" />
+                <InputText @bind-Value="form.Additional.Cv" class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" />
             </div>
         </div>
     </div>

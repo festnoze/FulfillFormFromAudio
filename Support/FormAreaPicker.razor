@@ -1,6 +1,9 @@
 ﻿@using System.Linq.Expressions
 @using Microsoft.AspNetCore.Components.Forms
-<InputSelect class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500" Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression">
+<InputSelect class="w-full mt-2 px-3 py-1 rounded-md shadow-md focus:outline focus:outline-2 focus:outline-blue-500"
+             Value="@Value"
+             ValueChanged="@ValueChanged"
+             ValueExpression="@ValueExpression">
     <option value=""></option>
     <option value="@(FormArea.CORE_PKL_Bottom_of_page)">CORE_PKL_Bottom_of_page</option>
     <option value="@(FormArea.CORE_PKL_Thank_you_page)">CORE_PKL_Thank_you_page</option>
